@@ -1,0 +1,13 @@
+{
+  "name": "database-backup-restore-chain-validator",
+  "version": "1.0.0",
+  "description": "验证全量/增量/差异备份的恢复链完整性与时间点可恢复性",
+  "type": "module",
+  "engines": {
+    "node": ">=24.16.0"
+  },
+  "scripts": {
+    "test": "node --test",
+    "validate": "node src/cli.js"
+  }
+}

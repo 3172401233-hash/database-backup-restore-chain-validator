@@ -1,0 +1,97 @@
+{
+  "backups": [
+    {
+      "id": "full-2026-11-01",
+      "type": "full",
+      "timestamp": "2026-11-01T00:00:00Z",
+      "parentId": null,
+      "logStart": 0,
+      "logEnd": 1000,
+      "checksum": "sha256:f001",
+      "checksumVerified": true,
+      "fileIntact": true,
+      "fileSize": 10737418240,
+      "expectedSize": 10737418240,
+      "contentVersion": 1,
+      "baseVersion": null,
+      "replicas": [
+        { "location": "nas-a", "available": true },
+        { "location": "s3-archive", "available": true }
+      ],
+      "retention": "retained"
+    },
+    {
+      "id": "inc-2026-11-02",
+      "type": "incremental",
+      "timestamp": "2026-11-02T00:00:00Z",
+      "parentId": "full-2026-11-01",
+      "logStart": 1000,
+      "logEnd": 1400,
+      "checksum": "sha256:i002",
+      "checksumVerified": true,
+      "fileIntact": true,
+      "fileSize": 536870912,
+      "expectedSize": 536870912,
+      "contentVersion": 2,
+      "baseVersion": 1,
+      "replicas": [{ "location": "nas-a", "available": true }],
+      "retention": "retained"
+    },
+    {
+      "id": "inc-2026-11-03",
+      "type": "incremental",
+      "timestamp": "2026-11-03T00:00:00Z",
+      "parentId": "inc-2026-11-02",
+      "logStart": 1400,
+      "logEnd": 1750,
+      "checksum": "sha256:i003",
+      "checksumVerified": false,
+      "fileIntact": false,
+      "fileSize": 268435456,
+      "expectedSize": 536870912,
+      "contentVersion": 3,
+      "baseVersion": 2,
+      "replicas": [{ "location": "nas-a", "available": true }],
+      "retention": "retained"
+    },
+    {
+      "id": "inc-2026-11-04",
+      "type": "incremental",
+      "timestamp": "2026-11-04T00:00:00Z",
+      "parentId": "inc-2026-11-03",
+      "logStart": 1750,
+      "logEnd": 2100,
+      "checksum": "sha256:i004",
+      "checksumVerified": true,
+      "fileIntact": true,
+      "fileSize": 536870912,
+      "expectedSize": 536870912,
+      "contentVersion": 4,
+      "baseVersion": 3,
+      "replicas": [{ "location": "nas-a", "available": true }],
+      "retention": "retained"
+    },
+    {
+      "id": "diff-2026-11-04",
+      "type": "differential",
+      "timestamp": "2026-11-04T06:00:00Z",
+      "parentId": "full-2026-11-01",
+      "logStart": 1000,
+      "logEnd": 2100,
+      "checksum": "sha256:d004",
+      "checksumVerified": true,
+      "fileIntact": true,
+      "fileSize": 2147483648,
+      "expectedSize": 2147483648,
+      "contentVersion": 5,
+      "baseVersion": 1,
+      "replicas": [{ "location": "s3-archive", "available": true }],
+      "retention": "retained"
+    }
+  ],
+  "targets": [
+    { "name": "before-gap", "time": "2026-11-02T12:00:00Z", "logPosition": 1200 },
+    { "name": "inside-gap", "time": "2026-11-03T12:00:00Z", "logPosition": 1600 },
+    { "name": "via-differential", "time": "2026-11-04T12:00:00Z", "logPosition": 2000 }
+  ]
+}
